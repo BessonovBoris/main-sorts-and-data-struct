@@ -1,4 +1,6 @@
-#include <stdio.h>
+#include <iostream>
+
+using namespace std;
 
 void merge(int *a, int left, int mid, int right){
     int it1 = 0;
@@ -30,25 +32,28 @@ void merge(int *a, int left, int mid, int right){
     }
 }
 
-void mergeS(int *a, int left, int right){
+void mergeSort(int *a, int left, int right){
     if(left + 1 >= right){
         return;
     }
     int mid = (left + right)/2;
-    mergeS(a, left, mid);
-    mergeS(a, mid, right);
+    mergeSort(a, left, mid);
+    mergeSort(a, mid, right);
     merge(a, left, mid, right);
 }
 
+
 int main() {
-    int n;
-    int a[] = {5, 7, 6, 1, 3, 2, 4};
-    n = sizeof(a)/sizeof(a[0]);
+    int len;
 
-    mergeS(a, 0, n);
+    int arr[] = {6, 2, 6, 3, 1, 0, 100, -5, 2};
 
-    for(int i = 0; i < n; i++){
-        printf("%d ", a[i]);
+    len = sizeof(arr)/sizeof(arr[0]);
+
+    mergeSort(arr, 0, len-1);
+
+    for(int i = 0; i < len; i++) {
+        cout << arr[i] << " ";
     }
 
     return 0;
